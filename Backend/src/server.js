@@ -2,7 +2,7 @@
 //database connection
 
 const connectDB = require("./config/database");
-const app = require("../src/app");
+const app = require("./app");
 
 connectDB()
 
