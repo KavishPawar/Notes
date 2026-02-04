@@ -1,0 +1,109 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body , #root{
+  height: 100%;
+  width: 100%;
+  color: white;
+}
+
+html{
+  background-color: #242424;
+  font-family: Helvetica;
+}
+
+.notes{
+  display: flex;
+  max-width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+.note{
+  background: #525050;
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  width: 18rem;
+  margin: 1.5rem;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.note:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 20px rgba(14, 4, 60, 0.12);
+}
+
+h1{
+  text-transform: capitalize;
+  margin-bottom: 1.75rem;
+}
+
+p{
+  color: rgb(177, 177, 177);
+}
+
+.notes-form{
+  background: #525050;
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  margin: 1rem;
+  border-radius: 0.75rem;
+}
+
+input {
+  padding: 0.5rem;
+  border-radius: .5rem;
+  background: rgb(233, 233, 233);
+  border: none;
+  transition: transform 0.25s ease-out,box-shadow 0.25s ease ;
+}
+
+input:hover{
+  box-shadow: 0 8px 10px rgba(2, 5, 52, 0.12);
+}
+
+.btn{
+  padding-inline: 1rem;
+  border-radius: .5rem;
+  background: #a4eed1;
+  border: none;
+  transition: transform 0.25s ease-out,box-shadow 0.25s ease ;
+}
+
+.btn:hover{
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.12);
+}
+
+.delete{
+  background: rgb(207, 76, 76);
+  color: white;
+  margin-top: 1rem;
+  padding-block: .5rem;
+  border: none;
+}
+.update{
+  background: rgb(76, 100, 207);
+  color: white;
+  margin-top: 1rem;
+  padding-block: .5rem;
+  border: none;
+  margin-left: .5rem;
+}
+.edit{
+  display: flex;
+}
+.mod-description{
+  margin-top: 1rem;
+}
+.save{
+  background: rgb(226, 143, 66);
+  color: white;
+  margin-top: 1rem;
+  padding-block: .5rem;
+  border: none;
+  margin-left: .5rem;
+}
