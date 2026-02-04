@@ -6,7 +6,7 @@ function App() {
   const [edit, setEdit] = useState(false);
 
   function fetchData() {
-    axios.get("http://localhost:3000/api/notes").then((res) => {
+    axios.get("https://notes-4-5t5k.onrender.com/api/notes").then((res) => {
       setNotes(res.data.notes);
     });
   }
@@ -19,7 +19,7 @@ function App() {
     e.preventDefault();
     const { title, description } = e.target.elements;
     axios
-      .post("http://localhost:3000/api/notes", {
+      .post("https://notes-4-5t5k.onrender.com/api/notes", {
         title: title.value,
         description: description.value,
       })
@@ -30,15 +30,17 @@ function App() {
   }
 
   function handleDelete(id) {
-    axios.delete(`http://localhost:3000/api/notes/${id}`).then(() => {
-      fetchData();
-    });
+    axios
+      .delete(`https://notes-4-5t5k.onrender.com/api/notes/${id}`)
+      .then(() => {
+        fetchData();
+      });
   }
 
   function handleEdit(note) {
     console.log(note._id);
     axios
-      .patch(`http://localhost:3000/api/notes/${note._id}`, {
+      .patch(`https://notes-4-5t5k.onrender.com/api/notes/${note._id}`, {
         description: description,
       })
       .then(() => {
@@ -47,7 +49,7 @@ function App() {
   }
 
   function handleShow(id) {
-    edit ? setEdit(false): setEdit(true);
+    edit ? setEdit(false) : setEdit(true);
   }
 
   return (
@@ -92,7 +94,7 @@ function App() {
                     placeholder="Modify-Description"
                     value={description}
                     onChange={(e) => {
-                      setDescription(e.target.value); 
+                      setDescription(e.target.value);
                     }}
                   />
                   <button
