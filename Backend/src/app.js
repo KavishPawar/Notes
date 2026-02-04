@@ -10,10 +10,10 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
-app.use(express.static("./public"));
+app.use(express.static('./public'))
 
 // POST
-app.post("https://notes-4-5t5k.onrender.com/api/notes", async (req, res) => {
+app.post("/api/notes", async (req, res) => {
   // guard against missing body
   const { title, description } = req.body;
 
@@ -29,7 +29,7 @@ app.post("https://notes-4-5t5k.onrender.com/api/notes", async (req, res) => {
 });
 
 // GET
-app.get("https://notes-4-5t5k.onrender.com/api/notes", async (req, res) => {
+app.get("/api/notes", async (req, res) => {
   const notes = await noteModel.find();
 
   res.status(200).json({
@@ -39,32 +39,26 @@ app.get("https://notes-4-5t5k.onrender.com/api/notes", async (req, res) => {
 });
 
 // DELETE
-app.delete(
-  "https://notes-4-5t5k.onrender.com/api/notes/:id",
-  async (req, res) => {
-    const id = req.params.id;
-    await noteModel.findByIdAndDelete(id);
+app.delete("/api/notes/:id", async (req, res) => {
+  const id = req.params.id;
+  await noteModel.findByIdAndDelete(id);
 
-    res.status(200).json({
-      message: "Note Deleted Successfully.",
-    });
-  },
-);
+  res.status(200).json({
+    message: "Note Deleted Successfully.",
+  });
+});
 
 // PATCH
-app.patch(
-  "https://notes-4-5t5k.onrender.com/api/notes/:id",
-  async (req, res) => {
-    const id = req.params.id;
-    const { description } = req.body;
+app.patch("/api/notes/:id", async (req, res) => {
+  const id = req.params.id;
+  const { description } = req.body;
 
-    await noteModel.findByIdAndUpdate(id, { description });
+  await noteModel.findByIdAndUpdate(id, { description });
 
-    res.status(200).json({
-      message: "Note updated successfully",
-    });
-  },
-);
+  res.status(200).json({
+    message: "Note updated successfully",
+  });
+});
 
 // WILD CARD - middleware
 app.use("*name", (req, res) => {
