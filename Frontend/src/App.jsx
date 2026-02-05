@@ -6,8 +6,8 @@ function App() {
   const [edit, setEdit] = useState(null);
   const [isEdit, setIsEdit] = useState(false);
 
-  const url = "https://notes-1-7nkb.onrender.com/";
-  // const url = "http://localhost:3000/";
+  // const url = "https://notes-1-7nkb.onrender.com/";
+  const url = "http://localhost:3000/";
 
   // FETCH
   function fetchData() {
@@ -93,7 +93,7 @@ function App() {
               >
                 Edit
               </button>
-              {edit == note._id && isEdit && (
+              {edit == note._id && isEdit ? (
                 <div className="edit">
                   <input
                     type="text"
@@ -114,6 +114,8 @@ function App() {
                     Save
                   </button>
                 </div>
+              ) : (
+                <div className="edit-hidden"></div>
               )}
             </div>
           );
