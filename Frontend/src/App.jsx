@@ -6,8 +6,8 @@ function App() {
   const [edit, setEdit] = useState(null);
   const [isEdit, setIsEdit] = useState(false);
 
-  // "https://notes-1-7nkb.onrender.com/";
-  const url = "http://localhost:3000/";
+  const url = "https://notes-1-7nkb.onrender.com/";
+  // const url = "http://localhost:3000/";
 
   // FETCH
   function fetchData() {
