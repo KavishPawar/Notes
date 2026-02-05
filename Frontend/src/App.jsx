@@ -3,10 +3,15 @@ import axios from "axios";
 function App() {
   const [notes, setNotes] = useState([]);
   const [description, setDescription] = useState("");
-  const [edit, setEdit] = useState(false);
+  const [edit, setEdit] = useState(null);
+  const [isEdit, setIsEdit] = useState(false);
 
+  // "https://notes-1-7nkb.onrender.com/";
+  const url = "http://localhost:3000/";
+
+  // FETCH
   function fetchData() {
-    axios.get("https://notes-1-7nkb.onrender.com/api/notes").then((res) => {
+    axios.get(`${url}api/notes`).then((res) => {
       setNotes(res.data.notes);
     });
   }
@@ -15,11 +20,12 @@ function App() {
     fetchData();
   }, []);
 
+  // SUBMIT
   function handleSubmit(e) {
     e.preventDefault();
     const { title, description } = e.target.elements;
     axios
-      .post("https://notes-1-7nkb.onrender.com/api/notes", {
+      .post(`${url}api/notes`, {
         title: title.value,
         description: description.value,
       })
@@ -29,18 +35,17 @@ function App() {
       });
   }
 
+  // DELETE
   function handleDelete(id) {
-    axios
-      .delete(`https://notes-1-7nkb.onrender.com/api/notes/${id}`)
-      .then(() => {
-        fetchData();
-      });
+    axios.delete(`${url}api/notes/${id}`).then(() => {
+      fetchData();
+    });
   }
 
+  // EDIT
   function handleEdit(note) {
-    console.log(note._id);
     axios
-      .patch(`https://notes-1-7nkb.onrender.com/api/notes/${note._id}`, {
+      .patch(`${url}api/notes/${note._id}`, {
         description: description,
       })
       .then(() => {
@@ -48,8 +53,10 @@ function App() {
       });
   }
 
+  // REVEAL
   function handleShow(id) {
-    edit ? setEdit(false) : setEdit(true);
+    setEdit(id);
+    isEdit ? setIsEdit(false) : setIsEdit(true);
   }
 
   return (
@@ -86,7 +93,7 @@ function App() {
               >
                 Edit
               </button>
-              {edit && (
+              {edit == note._id && isEdit && (
                 <div className="edit">
                   <input
                     type="text"
